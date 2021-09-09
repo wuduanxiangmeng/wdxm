@@ -1,0 +1,28 @@
+
+body{
+background-image: url("img/bg.jpg");
+background-size: 100% auto;
+
+}
+.nav-top{
+    text-align: right;
+    color: white;
+    padding-right: 10px;
+}
+.nav-top>img{
+    vertical-align: middle;
+}
+.content{
+    margin-top: 180px;
+    text-align: center;
+}
+.content>img{
+    width:360px ;
+}
+.content>form>input{
+    width: 400px;
+    line-height: 20px;
+    padding:5px;
+    padding-left: 30px;
+    font-size: 18px;
+}
