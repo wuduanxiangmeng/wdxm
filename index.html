@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>嫦娥奔月</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            /* 清除默认外边距 */
+            margin: 0;
+        }
+
+        .sky {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+
+        }
+
+        .sky::before {
+            /* 必须要写  激活*/
+            content: "";
+            /* 变为块元素 */
+            display: block;
+            position: absolute;
+            top: 100px;
+            left: 200px;
+            width: 180px;
+            height: 180px;
+            background-color: yellow;
+            /* 变成圆的 */
+            border-radius: 50%;
+        }
+
+        .stars {
+            width: 15px;
+            height: 15px;
+            /* 缩放 更小 */
+            transform: scale(0.5);
+            position: absolute;
+            /* 位置使用js来完成 */
+            top: 20px;
+            left: 30px;
+            /* 绑定星星动画 */
+            animation: 1s starsMove infinite;
+        }
+
+        .chang-e {
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            left: 10%;
+            top: 10%;
+            /* infinite 循环  linear 匀速状态*/
+            animation: 10s changebenyue linear infinite;
+        }
+
+        @keyframes changebenyue {
+            from {
+                left: 70%;
+                top: 70%;
+            }
+
+            to {
+                left: 10%;
+                top: 10%;
+            }
+        }
+
+        @keyframes starsMove {
+            from {
+                transform: scale(0.2);
+            }
+
+            to {
+                transform: scale(0.5);
+            }
+        }
+        .text{
+            position: absolute;
+            right: 80px;
+            top: 40px;
+            font-size: 88px;
+            color: yellow;
+        }
+        .text-bg{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 880px;
+            right: 0;
+            background-color: black;
+            animation: 10s textMove infinite steps(11);
+        }
+        @keyframes textMove {
+            from{
+                left: 0;
+            }
+            to{
+                left: 968px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 天空 -->
+    <div class="sky">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="stars" src="img/stars.png" alt="">
+        <img class="chang-e" src="img/chang-e.gif" alt="">
+        <div class="text">
+            但愿人长久千里共婵娟
+            <div class="text-bg"></div>
+        </div>
+    </div>
+    <script>
+        // js
+        // 存储我们的标签
+        var stars = document.querySelectorAll(".stars");
+        var chang_e = document.querySelector(".chang-e");
+        var text_bg =  document.querySelector(".text-bg");
+        for (var i = 0; i < stars.length; i++) {
+            // 设置星星的位置
+            stars[i].style.left = starsXY().y + "px";
+            stars[i].style.top = starsXY().x + "px";
+        }
+        // 生成星星的位置
+        function starsXY() {
+            // 随机生成 0-1之间的数
+            // 生成上的位置
+            var x = Math.floor(Math.random() * 300);
+            // 生成左的位置
+            var y = Math.floor(Math.random() * 500);
+            var obj = {
+                x, y
+            }
+            // 返回位置
+            return obj;
+        }
+        var changeTime = setInterval(function () {
+            // 动画暂停
+            text_bg.style.animationPlayState=chang_e.style.animationPlayState = "paused";
+            // 定时器 停顿多少秒
+
+            setTimeout(function () {
+                clearInterval(changeTime);
+                text_bg.style.animationPlayState=chang_e.style.animationPlayState = "running";
+                changeTime = runTime();
+            }, 3000)
+            // 清除延时器
+        }, 10000)
+        function runTime(){
+            return setInterval(function () {
+                    // 动画暂停
+                    text_bg.style.animationPlayState=chang_e.style.animationPlayState = "paused";
+                    // 定时器 停顿多少秒
+
+                    setTimeout(function () {
+                        clearInterval(changeTime);
+                        text_bg.style.animationPlayState=chang_e.style.animationPlayState = "running";
+                        changeTime
+                    }, 3000)
+                    // 清除延时器
+                }, 10000)
+        }
+    </script>
+</body>
+
+</html>
